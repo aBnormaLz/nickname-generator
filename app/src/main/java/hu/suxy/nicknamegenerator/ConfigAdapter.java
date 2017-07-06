@@ -19,7 +19,11 @@ import butterknife.OnClick;
 
 public class ConfigAdapter extends RecyclerView.Adapter<ConfigAdapter.ViewHolder> {
 
-    private List<LetterType> letters = new ArrayList<>();
+    private List<LetterType> letters;
+
+    public ConfigAdapter(List<LetterType> config) {
+        letters = config;
+    }
 
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {

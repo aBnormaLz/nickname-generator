@@ -9,6 +9,8 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 
+import java.util.ArrayList;
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
@@ -20,6 +22,7 @@ public class MainActivity extends AppCompatActivity {
 
     private LetterAdapter letterAdapter;
     private NicknameGenerator generator;
+    private static final int configRequest = 1111;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,10 +50,21 @@ public class MainActivity extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         if (item.getItemId() == R.id.settings) {
-            startActivity(new Intent(this, ConfigActivity.class));
+            Intent configIntent = new Intent(this, ConfigActivity.class);
+            configIntent.putExtra("config", new ArrayList<>(generator.getConfig()));
+            startActivityForResult(configIntent, configRequest);
             return true;
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == configRequest && resultCode == AppCompatActivity.RESULT_OK) {
+            generator.setConfig((ArrayList<LetterType>) data.getSerializableExtra("config"));
+            letterAdapter.setName(generator.generateNickname());
+        }
     }
 }

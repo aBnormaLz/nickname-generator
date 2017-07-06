@@ -1,12 +1,15 @@
 package hu.suxy.nicknamegenerator;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
 class NicknameGenerator {
 
+    private List<LetterType> config;
     private List<String> vowels;
     private List<String> consonant;
+    private List<String> dontCare;
 
     public NicknameGenerator() {
         this.consonant = Arrays.asList(
@@ -22,15 +25,40 @@ class NicknameGenerator {
                 "I", "Í",
                 "O", "Ó", "Ö", "Ő",
                 "U", "Ú", "Ü", "Ű");
+        this.dontCare = new ArrayList<>();
+        this.dontCare.addAll(consonant);
+        this.dontCare.addAll(vowels);
+        this.config = new ArrayList<>();
+        this.config.add(LetterType.DONT_CARE);
+        this.config.add(LetterType.DONT_CARE);
+        this.config.add(LetterType.DONT_CARE);
+        this.config.add(LetterType.DONT_CARE);
     }
 
     public String generateNickname() {
         StringBuilder sb = new StringBuilder();
-        sb.append(randomFrom(consonant));
-        sb.append(randomFrom(vowels));
-        sb.append(randomFrom(consonant));
-        sb.append(randomFrom(vowels));
+        for (LetterType letterType : config) {
+            switch (letterType) {
+                case DONT_CARE:
+                    sb.append(randomFrom(dontCare));
+                    break;
+                case VOWEL:
+                    sb.append(randomFrom(vowels));
+                    break;
+                case CONSONANT:
+                    sb.append(randomFrom(consonant));
+                    break;
+            }
+        }
         return sb.toString();
+    }
+
+    public List<LetterType> getConfig() {
+        return config;
+    }
+
+    public void setConfig(List<LetterType> config) {
+        this.config = config;
     }
 
     private String randomFrom(List<String> letterList) {

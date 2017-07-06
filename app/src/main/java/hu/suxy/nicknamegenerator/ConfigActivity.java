@@ -1,10 +1,14 @@
 package hu.suxy.nicknamegenerator;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -23,7 +27,7 @@ public class ConfigActivity extends AppCompatActivity {
         setContentView(R.layout.activity_config);
         ButterKnife.bind(this);
         mConfigList.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
-        configAdapter = new ConfigAdapter();
+        configAdapter = new ConfigAdapter((ArrayList<LetterType>) getIntent().getSerializableExtra("config"));
         mConfigList.setAdapter(configAdapter);
     }
 
@@ -40,6 +44,10 @@ public class ConfigActivity extends AppCompatActivity {
 
     @OnClick(R.id.saveButton)
     public void onSaveButtonClicked() {
-        configAdapter.getLetters(); // TODO set letters to generator
+        List<LetterType> config = configAdapter.getLetters();
+        Intent intent = new Intent();
+        intent.putExtra("config", new ArrayList<>(config));
+        setResult(AppCompatActivity.RESULT_OK, intent);
+        finish();
     }
 }
