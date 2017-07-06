@@ -8,7 +8,7 @@
         android:id="@+id/configList"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_above="@+id/buttonContainer" />
+        android:layout_above="@+id/buttonContainer"/>
 
     <LinearLayout
         android:id="@+id/buttonContainer"
@@ -18,6 +18,16 @@
         android:orientation="horizontal">
 
         <ImageButton
+            android:id="@+id/saveButton"
+            android:layout_width="0dp"
+            android:layout_height="48dp"
+            android:layout_margin="16dp"
+            android:layout_weight="1"
+            android:background="@drawable/button_bg"
+            android:src="@drawable/ic_done_black_24dp"
+            android:tint="@android:color/white"/>
+
+        <ImageButton
             android:id="@+id/addButton"
             android:layout_width="0dp"
             android:layout_height="48dp"
@@ -25,7 +35,7 @@
             android:layout_weight="1"
             android:background="@drawable/button_bg"
             android:src="@drawable/ic_add_black_24dp"
-            android:tint="@android:color/white" />
+            android:tint="@android:color/white"/>
     </LinearLayout>
 
 

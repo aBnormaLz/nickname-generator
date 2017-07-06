@@ -13,10 +13,10 @@
         android:gravity="center"
         android:textAllCaps="true"
         android:textSize="56sp"
-        tools:text="R" />
+        tools:text="R"/>
 
     <View
         android:layout_width="match_parent"
         android:layout_height="2dp"
-        android:background="@android:color/black" />
+        android:background="@android:color/black"/>
 </LinearLayout>

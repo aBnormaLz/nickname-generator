@@ -28,7 +28,7 @@ public class ConfigActivity extends AppCompatActivity {
     }
 
     @OnClick(R.id.addButton)
-    public void onViewClicked() {
+    public void onAddButtonClicked() {
         configAdapter.addConfig();
         mConfigList.post(new Runnable() {
             @Override
@@ -36,5 +36,10 @@ public class ConfigActivity extends AppCompatActivity {
                 mConfigList.smoothScrollToPosition(configAdapter.getItemCount() - 1);
             }
         });
+    }
+
+    @OnClick(R.id.saveButton)
+    public void onSaveButtonClicked() {
+        configAdapter.getLetters(); // TODO set letters to generator
     }
 }

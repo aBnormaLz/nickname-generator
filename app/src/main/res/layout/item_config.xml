@@ -18,9 +18,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textSize="24sp"
-            tools:text="1." />
+            tools:text="1."/>
 
-        <TextView
+        <Spinner
             android:id="@+id/type"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
@@ -28,26 +28,28 @@
             android:layout_marginRight="16dp"
             android:layout_weight="1"
             android:textSize="24sp"
-            tools:text="VOWEL" />
+            tools:text="VOWEL">
+        </Spinner>
 
         <ImageView
             android:layout_width="28dp"
             android:layout_height="28dp"
             android:layout_marginRight="16dp"
             android:src="@drawable/ic_settings_black_24dp"
-            android:tint="@color/colorPrimary" />
+            android:tint="@color/colorPrimary"/>
 
         <ImageView
+            android:id="@+id/deleteButton"
             android:layout_width="28dp"
             android:layout_height="28dp"
             android:src="@drawable/ic_delete_forever_black_24dp"
-            android:tint="@color/colorPrimary" />
+            android:tint="@color/colorPrimary"/>
 
     </LinearLayout>
 
     <View
         android:layout_width="match_parent"
         android:layout_height="1dp"
-        android:background="@color/colorPrimaryDark" />
+        android:background="@color/colorPrimaryDark"/>
 
 </LinearLayout>
